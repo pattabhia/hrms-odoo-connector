@@ -74,7 +74,10 @@ const odooConfig = {
     department: process.env.ODOO_MODEL_DEPARTMENT || 'hr.department',
     job: process.env.ODOO_MODEL_JOB || 'hr.job',
     contract: process.env.ODOO_MODEL_CONTRACT || 'hr.contract',
-    payslip: process.env.ODOO_MODEL_PAYSLIP || 'hr.payslip'
+    payslip: process.env.ODOO_MODEL_PAYSLIP || 'hr.payslip',
+    expense: process.env.ODOO_MODEL_EXPENSE || 'hr.expense',
+    invoice: process.env.ODOO_MODEL_INVOICE || 'account.move',
+    applicant: process.env.ODOO_MODEL_APPLICANT || 'hr.applicant'
   },
 
   // Common fields for different models
@@ -109,6 +112,47 @@ const odooConfig = {
       'date_to',
       'number_of_days',
       'state',
+      'create_date'
+    ],
+    payslip: [
+      'id',
+      'number',
+      'employee_id',
+      'date_from',
+      'date_to',
+      'state',
+      'amount_total',
+      'create_date'
+    ],
+    expense: [
+      'id',
+      'name',
+      'employee_id',
+      'total_amount',
+      'state',
+      'date',
+      'payment_state',
+      'create_date'
+    ],
+    invoice: [
+      'id',
+      'name',
+      'partner_id',
+      'invoice_date',
+      'invoice_date_due',
+      'amount_total',
+      'payment_state',
+      'state',
+      'move_type'
+    ],
+    applicant: [
+      'id',
+      'name',
+      'email_from',
+      'partner_name',
+      'job_id',
+      'department_id',
+      'stage_id',
       'create_date'
     ]
   }

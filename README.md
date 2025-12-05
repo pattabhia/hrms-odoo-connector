@@ -198,6 +198,66 @@ Interactive API documentation: **http://localhost:3000/api-docs**
 | POST | `/api/v1/employees/:id/deactivate` | Deactivate employee |
 | POST | `/api/v1/employees/:id/reactivate` | Reactivate employee |
 
+#### Attendance Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/attendance` | List attendance entries |
+| GET | `/api/v1/attendance/:id` | Get attendance entry |
+| POST | `/api/v1/attendance` | Create attendance entry |
+| PUT/PATCH | `/api/v1/attendance/:id` | Update attendance entry |
+| DELETE | `/api/v1/attendance/:id` | Delete attendance entry |
+
+#### Time Off Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/timeoff` | List leave requests |
+| GET | `/api/v1/timeoff/:id` | Get leave request |
+| POST | `/api/v1/timeoff` | Create leave request |
+| PUT/PATCH | `/api/v1/timeoff/:id` | Update leave request |
+| DELETE | `/api/v1/timeoff/:id` | Delete leave request |
+
+#### Payroll Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/payroll` | List payslips |
+| GET | `/api/v1/payroll/:id` | Get payslip |
+| POST | `/api/v1/payroll` | Create payslip shell |
+| PUT/PATCH | `/api/v1/payroll/:id` | Update payslip |
+| DELETE | `/api/v1/payroll/:id` | Delete payslip |
+
+#### Expenses Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/expenses` | List expenses |
+| GET | `/api/v1/expenses/:id` | Get expense |
+| POST | `/api/v1/expenses` | Create expense |
+| PUT/PATCH | `/api/v1/expenses/:id` | Update expense |
+| DELETE | `/api/v1/expenses/:id` | Delete expense |
+
+#### Invoices Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/invoices` | List invoices |
+| GET | `/api/v1/invoices/:id` | Get invoice |
+| POST | `/api/v1/invoices` | Create invoice |
+| PUT/PATCH | `/api/v1/invoices/:id` | Update invoice |
+| DELETE | `/api/v1/invoices/:id` | Delete invoice |
+
+#### Recruitment Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/recruitment` | List applicants |
+| GET | `/api/v1/recruitment/:id` | Get applicant |
+| POST | `/api/v1/recruitment` | Create applicant |
+| PUT/PATCH | `/api/v1/recruitment/:id` | Update applicant |
+| DELETE | `/api/v1/recruitment/:id` | Delete applicant |
+
 ## 🧪 Testing
 
 ```bash

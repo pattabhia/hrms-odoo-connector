@@ -111,27 +111,31 @@ make dev
 
 ### Environment Variables
 
-Copy `.env.example` to `.env` and configure:
+Copy `.env.example` to `.env` and configure. Two Odoo connection profiles are available so you can easily switch between your hosted web instance and the local Docker stack:
 
 ```env
 # Application
 NODE_ENV=development
 PORT=3000
 
-# Odoo Configuration
-ODOO_HOST=localhost
-ODOO_PORT=8069
-ODOO_DATABASE=odoo
-ODOO_USERNAME=admin
-ODOO_PASSWORD=admin
+# Odoo profile (web | docker)
+ODOO_PROFILE=web
 
-# Redis (optional)
-REDIS_HOST=localhost
-REDIS_PORT=6379
+# Web/remote instance
+ODOO_WEB_HOST=your-web-host
+ODOO_WEB_PORT=8069
+ODOO_WEB_USERNAME=admin
+ODOO_WEB_PASSWORD=secret
 
-# Security
-JWT_SECRET=change-this-in-production
+# Local Docker instance
+ODOO_DOCKER_HOST=odoo
+ODOO_DOCKER_PORT=8069
+ODOO_DOCKER_USERNAME=admin
+ODOO_DOCKER_PASSWORD=admin
 ```
+
+- Set `ODOO_PROFILE=web` to point the API at your existing hosted Odoo instance using the `ODOO_WEB_*` variables.
+- Set `ODOO_PROFILE=docker` (the default in `docker-compose.yml`) to connect to the local containers.
 
 See `.env.example` for all available options.
 
@@ -193,6 +197,66 @@ Interactive API documentation: **http://localhost:3000/api-docs**
 | DELETE | `/api/v1/employees/:id` | Delete employee |
 | POST | `/api/v1/employees/:id/deactivate` | Deactivate employee |
 | POST | `/api/v1/employees/:id/reactivate` | Reactivate employee |
+
+#### Attendance Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/attendance` | List attendance entries |
+| GET | `/api/v1/attendance/:id` | Get attendance entry |
+| POST | `/api/v1/attendance` | Create attendance entry |
+| PUT/PATCH | `/api/v1/attendance/:id` | Update attendance entry |
+| DELETE | `/api/v1/attendance/:id` | Delete attendance entry |
+
+#### Time Off Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/timeoff` | List leave requests |
+| GET | `/api/v1/timeoff/:id` | Get leave request |
+| POST | `/api/v1/timeoff` | Create leave request |
+| PUT/PATCH | `/api/v1/timeoff/:id` | Update leave request |
+| DELETE | `/api/v1/timeoff/:id` | Delete leave request |
+
+#### Payroll Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/payroll` | List payslips |
+| GET | `/api/v1/payroll/:id` | Get payslip |
+| POST | `/api/v1/payroll` | Create payslip shell |
+| PUT/PATCH | `/api/v1/payroll/:id` | Update payslip |
+| DELETE | `/api/v1/payroll/:id` | Delete payslip |
+
+#### Expenses Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/expenses` | List expenses |
+| GET | `/api/v1/expenses/:id` | Get expense |
+| POST | `/api/v1/expenses` | Create expense |
+| PUT/PATCH | `/api/v1/expenses/:id` | Update expense |
+| DELETE | `/api/v1/expenses/:id` | Delete expense |
+
+#### Invoices Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/invoices` | List invoices |
+| GET | `/api/v1/invoices/:id` | Get invoice |
+| POST | `/api/v1/invoices` | Create invoice |
+| PUT/PATCH | `/api/v1/invoices/:id` | Update invoice |
+| DELETE | `/api/v1/invoices/:id` | Delete invoice |
+
+#### Recruitment Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/recruitment` | List applicants |
+| GET | `/api/v1/recruitment/:id` | Get applicant |
+| POST | `/api/v1/recruitment` | Create applicant |
+| PUT/PATCH | `/api/v1/recruitment/:id` | Update applicant |
+| DELETE | `/api/v1/recruitment/:id` | Delete applicant |
 
 ## 🧪 Testing
 

@@ -92,11 +92,12 @@ services:
       PORT: ${PORT:-3000}
 
       # Odoo Configuration
-      ODOO_HOST: odoo
-      ODOO_PORT: 8069
-      ODOO_DATABASE: ${ODOO_DATABASE:-odoo}
-      ODOO_USERNAME: ${ODOO_USERNAME:-admin}
-      ODOO_PASSWORD: ${ODOO_PASSWORD:-admin}
+      ODOO_PROFILE: docker
+      ODOO_DOCKER_HOST: odoo
+      ODOO_DOCKER_PORT: 8069
+      ODOO_DOCKER_DATABASE: ${ODOO_DATABASE:-odoo}
+      ODOO_DOCKER_USERNAME: ${ODOO_USERNAME:-admin}
+      ODOO_DOCKER_PASSWORD: ${ODOO_PASSWORD:-admin}
 
       # Redis Configuration
       REDIS_HOST: redis

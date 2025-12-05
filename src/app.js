@@ -24,6 +24,43 @@ const EmployeeValidator = require('./modules/employee/employee.validator');
 const EmployeeAdapter = require('./modules/employee/employee.adapter');
 const createEmployeeRoutes = require('./modules/employee/employee.routes');
 
+// Additional HR modules
+const AttendanceRepository = require('./modules/attendance/attendance.repository');
+const AttendanceService = require('./modules/attendance/attendance.service');
+const AttendanceController = require('./modules/attendance/attendance.controller');
+const AttendanceAdapter = require('./modules/attendance/attendance.adapter');
+const createAttendanceRoutes = require('./modules/attendance/attendance.routes');
+
+const TimeOffRepository = require('./modules/timeoff/timeoff.repository');
+const TimeOffService = require('./modules/timeoff/timeoff.service');
+const TimeOffController = require('./modules/timeoff/timeoff.controller');
+const TimeOffAdapter = require('./modules/timeoff/timeoff.adapter');
+const createTimeOffRoutes = require('./modules/timeoff/timeoff.routes');
+
+const PayrollRepository = require('./modules/payroll/payroll.repository');
+const PayrollService = require('./modules/payroll/payroll.service');
+const PayrollController = require('./modules/payroll/payroll.controller');
+const PayrollAdapter = require('./modules/payroll/payroll.adapter');
+const createPayrollRoutes = require('./modules/payroll/payroll.routes');
+
+const ExpensesRepository = require('./modules/expenses/expenses.repository');
+const ExpensesService = require('./modules/expenses/expenses.service');
+const ExpensesController = require('./modules/expenses/expenses.controller');
+const ExpensesAdapter = require('./modules/expenses/expenses.adapter');
+const createExpensesRoutes = require('./modules/expenses/expenses.routes');
+
+const InvoicesRepository = require('./modules/invoices/invoices.repository');
+const InvoicesService = require('./modules/invoices/invoices.service');
+const InvoicesController = require('./modules/invoices/invoices.controller');
+const InvoicesAdapter = require('./modules/invoices/invoices.adapter');
+const createInvoicesRoutes = require('./modules/invoices/invoices.routes');
+
+const RecruitmentRepository = require('./modules/recruitment/recruitment.repository');
+const RecruitmentService = require('./modules/recruitment/recruitment.service');
+const RecruitmentController = require('./modules/recruitment/recruitment.controller');
+const RecruitmentAdapter = require('./modules/recruitment/recruitment.adapter');
+const createRecruitmentRoutes = require('./modules/recruitment/recruitment.routes');
+
 const logger = createLogger('Application');
 
 /**
@@ -182,6 +219,68 @@ function createApp() {
   );
   const employeeController = new EmployeeController(employeeService, logger);
 
+  // Attendance Module
+  const attendanceRepository = new AttendanceRepository(
+    odooPool,
+    config.odoo.models.attendance,
+    logger
+  );
+  const attendanceService = new AttendanceService(attendanceRepository, {
+    adapter: new AttendanceAdapter(),
+    logger,
+    defaultFields: config.odoo.defaultFields.attendance
+  });
+  const attendanceController = new AttendanceController(attendanceService, logger);
+
+  // Time Off Module
+  const timeOffRepository = new TimeOffRepository(odooPool, config.odoo.models.leave, logger);
+  const timeOffService = new TimeOffService(timeOffRepository, {
+    adapter: new TimeOffAdapter(),
+    logger,
+    defaultFields: config.odoo.defaultFields.leave
+  });
+  const timeOffController = new TimeOffController(timeOffService, logger);
+
+  // Payroll Module
+  const payrollRepository = new PayrollRepository(odooPool, config.odoo.models.payslip, logger);
+  const payrollService = new PayrollService(payrollRepository, {
+    adapter: new PayrollAdapter(),
+    logger,
+    defaultFields: config.odoo.defaultFields.payslip
+  });
+  const payrollController = new PayrollController(payrollService, logger);
+
+  // Expenses Module
+  const expensesRepository = new ExpensesRepository(odooPool, config.odoo.models.expense, logger);
+  const expensesService = new ExpensesService(expensesRepository, {
+    adapter: new ExpensesAdapter(),
+    logger,
+    defaultFields: config.odoo.defaultFields.expense
+  });
+  const expensesController = new ExpensesController(expensesService, logger);
+
+  // Invoices Module
+  const invoicesRepository = new InvoicesRepository(odooPool, config.odoo.models.invoice, logger);
+  const invoicesService = new InvoicesService(invoicesRepository, {
+    adapter: new InvoicesAdapter(),
+    logger,
+    defaultFields: config.odoo.defaultFields.invoice
+  });
+  const invoicesController = new InvoicesController(invoicesService, logger);
+
+  // Recruitment Module
+  const recruitmentRepository = new RecruitmentRepository(
+    odooPool,
+    config.odoo.models.applicant,
+    logger
+  );
+  const recruitmentService = new RecruitmentService(recruitmentRepository, {
+    adapter: new RecruitmentAdapter(),
+    logger,
+    defaultFields: config.odoo.defaultFields.applicant
+  });
+  const recruitmentController = new RecruitmentController(recruitmentService, logger);
+
   // ============================================================================
   // ROUTES
   // ============================================================================
@@ -191,9 +290,12 @@ function createApp() {
   // Employee routes
   app.use(`${API_PREFIX}/employees`, createEmployeeRoutes(employeeController));
 
-  // Add more module routes here as you build them
-  // app.use(`${API_PREFIX}/attendance`, createAttendanceRoutes(attendanceController));
-  // app.use(`${API_PREFIX}/leaves`, createLeaveRoutes(leaveController));
+  app.use(`${API_PREFIX}/attendance`, createAttendanceRoutes(attendanceController));
+  app.use(`${API_PREFIX}/timeoff`, createTimeOffRoutes(timeOffController));
+  app.use(`${API_PREFIX}/payroll`, createPayrollRoutes(payrollController));
+  app.use(`${API_PREFIX}/expenses`, createExpensesRoutes(expensesController));
+  app.use(`${API_PREFIX}/invoices`, createInvoicesRoutes(invoicesController));
+  app.use(`${API_PREFIX}/recruitment`, createRecruitmentRoutes(recruitmentController));
 
   // ============================================================================
   // ERROR HANDLING

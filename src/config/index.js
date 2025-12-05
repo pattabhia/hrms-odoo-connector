@@ -71,20 +71,15 @@ const config = {
  * Validate required configuration
  */
 const validateConfig = () => {
-  const required = [
-    'ODOO_HOST',
-    'ODOO_PORT',
-    'ODOO_DATABASE',
-    'ODOO_USERNAME',
-    'ODOO_PASSWORD'
-  ];
+  const required = ['host', 'port', 'database', 'username', 'password'];
 
-  const missing = required.filter((key) => !process.env[key]);
+  const missing = required.filter((key) => !config.odoo[key]);
 
   if (missing.length > 0) {
     throw new Error(
-      `Missing required environment variables: ${missing.join(', ')}\n` +
-      'Please check your .env file or environment configuration.'
+      `Missing required Odoo configuration values: ${missing.join(', ')}\n` +
+      `Active profile: ${config.odoo.profile || 'web'}\n` +
+      'Please check your .env file and ensure the selected profile is configured.'
     );
   }
 };

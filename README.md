@@ -1,67 +1,8 @@
 # HRMS Odoo Connector
 
-> Enterprise-grade HRMS connector for Odoo following SOLID principles and best practices
+> HRMS connector for Odoo following SOLID principles and best practices
 
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
-
-A production-ready REST API connector for Odoo HRMS built with Node.js and Express, featuring connection pooling, caching, comprehensive error handling, and Swagger documentation.
-
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Prerequisites](#-prerequisites)
-- [Quick Start](#-quick-start)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [API Documentation](#-api-documentation)
-- [Testing](#-testing)
-- [Docker](#-docker)
-- [Project Structure](#-project-structure)
-- [Development](#-development)
-- [License](#-license)
-
-## ✨ Features
-
-- **SOLID Principles**: Clean architecture following all SOLID principles
-- **Repository Pattern**: Data access abstraction for maintainability
-- **Connection Pooling**: Efficient Odoo connection management
-- **Redis Caching**: Optional caching layer for improved performance
-- **Swagger Documentation**: Interactive API documentation
-- **Error Handling**: Comprehensive error handling with custom error classes
-- **Request Validation**: Input validation using Joi
-- **Rate Limiting**: API rate limiting to prevent abuse
-- **Logging**: Structured logging with Winston
-- **Docker Support**: Full Docker and Docker Compose support
-- **Testing**: Unit and integration tests with Jest
-- **Security**: Helmet.js, CORS, JWT authentication ready
-- **Code Quality**: ESLint and Prettier configuration
-
-## 🏗️ Architecture
-
-This project follows a layered architecture with SOLID principles:
-
-```
-┌─────────────────────────────────────┐
-│         Controllers (HTTP)          │ ← Handle HTTP requests/responses
-├─────────────────────────────────────┤
-│      Services (Business Logic)      │ ← Business logic & orchestration
-├─────────────────────────────────────┤
-│    Repositories (Data Access)       │ ← Data access & Odoo communication
-├─────────────────────────────────────┤
-│     Infrastructure (Odoo Client)    │ ← Odoo connection & pooling
-└─────────────────────────────────────┘
-```
-
-**Key Design Patterns:**
-- **Repository Pattern**: Abstracts data access layer
-- **Dependency Injection**: Loose coupling between components
-- **Adapter Pattern**: Transforms data between Odoo and internal formats
-- **Factory Pattern**: Creates model-specific handlers
-- **Singleton Pattern**: Connection pool management
+  REST API connector for Odoo HRMS built with Node.js and Express with Swagger documentation.
 
 ## 📦 Prerequisites
 
@@ -178,9 +119,21 @@ curl -X DELETE http://localhost:3000/api/v1/employees/1
 
 Interactive API documentation: **http://localhost:3000/api-docs**
 
+<p align="center">
+  <img src="docs/images/odoo-swagger-ui.png">
+</p>
+
 ### Endpoints Overview
 
 #### Employee Endpoints
+
+<p align="center">
+  <img src="docs/images/odoo-swagger-employees.png">
+</p>
+
+<p align="center">
+  <img src="docs/images/odoo-active-employees.png">
+</p>
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -274,7 +227,7 @@ make test-unit
 make test-watch
 ```
 
-Current test coverage target: **70%+**
+Current test coverage target: **80%+**
 
 ## 🐳 Docker
 
@@ -339,61 +292,4 @@ make format-check      # Check formatting
 
 Run `make help` to see all available commands.
 
-### Adding New Modules
 
-1. Create module structure in `src/modules/your-module/`
-2. Implement: model, repository, service, controller, validator, adapter, routes
-3. Register routes in `src/app.js`
-4. Add tests in `tests/unit/` and `tests/integration/`
-
-Example module structure:
-```
-src/modules/attendance/
-├── attendance.model.js
-├── attendance.repository.js
-├── attendance.service.js
-├── attendance.controller.js
-├── attendance.validator.js
-├── attendance.adapter.js
-└── attendance.routes.js
-```
-
-## 📝 Additional Documentation
-
-- **[API Documentation](docs/API.md)** - Complete API reference
-- **[Architecture Guide](docs/ARCHITECTURE.md)** - Design patterns and principles
-- **[Odoo Setup Guide](docs/ODOO_SETUP.md)** - Odoo configuration
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Commit Convention
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-- `feat:` New features
-- `fix:` Bug fixes
-- `docs:` Documentation changes
-- `refactor:` Code refactoring
-- `test:` Test additions/changes
-- `chore:` Build process or tooling changes
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Express.js](https://expressjs.com/) - Web framework
-- [odoo-xmlrpc](https://github.com/OCA/odoo-xmlrpc) - Odoo integration
-- [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express) - API documentation
-- [Winston](https://github.com/winstonjs/winston) - Logging
-- [Joi](https://github.com/sideway/joi) - Validation
-
----
-
-**Built with ❤️ following SOLID principles and enterprise best practices**

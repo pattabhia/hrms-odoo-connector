@@ -111,27 +111,31 @@ make dev
 
 ### Environment Variables
 
-Copy `.env.example` to `.env` and configure:
+Copy `.env.example` to `.env` and configure. Two Odoo connection profiles are available so you can easily switch between your hosted web instance and the local Docker stack:
 
 ```env
 # Application
 NODE_ENV=development
 PORT=3000
 
-# Odoo Configuration
-ODOO_HOST=localhost
-ODOO_PORT=8069
-ODOO_DATABASE=odoo
-ODOO_USERNAME=admin
-ODOO_PASSWORD=admin
+# Odoo profile (web | docker)
+ODOO_PROFILE=web
 
-# Redis (optional)
-REDIS_HOST=localhost
-REDIS_PORT=6379
+# Web/remote instance
+ODOO_WEB_HOST=your-web-host
+ODOO_WEB_PORT=8069
+ODOO_WEB_USERNAME=admin
+ODOO_WEB_PASSWORD=secret
 
-# Security
-JWT_SECRET=change-this-in-production
+# Local Docker instance
+ODOO_DOCKER_HOST=odoo
+ODOO_DOCKER_PORT=8069
+ODOO_DOCKER_USERNAME=admin
+ODOO_DOCKER_PASSWORD=admin
 ```
+
+- Set `ODOO_PROFILE=web` to point the API at your existing hosted Odoo instance using the `ODOO_WEB_*` variables.
+- Set `ODOO_PROFILE=docker` (the default in `docker-compose.yml`) to connect to the local containers.
 
 See `.env.example` for all available options.
 

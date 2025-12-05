@@ -1,0 +1,101 @@
+/**
+ * Odoo Configuration
+ * Settings for connecting to Odoo instance
+ */
+
+const odooConfig = {
+  // Odoo server connection details
+  host: process.env.ODOO_HOST || 'localhost',
+  port: parseInt(process.env.ODOO_PORT, 10) || 8069,
+  database: process.env.ODOO_DATABASE || 'odoo',
+  username: process.env.ODOO_USERNAME || 'admin',
+  password: process.env.ODOO_PASSWORD || 'admin',
+
+  // Protocol settings
+  protocol: process.env.ODOO_PROTOCOL || 'http',
+  secure: process.env.ODOO_SECURE === 'true' || false,
+
+  // Connection pool settings
+  pool: {
+    min: parseInt(process.env.ODOO_POOL_MIN, 10) || 2,
+    max: parseInt(process.env.ODOO_POOL_MAX, 10) || 10,
+    idleTimeoutMillis: parseInt(process.env.ODOO_POOL_IDLE_TIMEOUT, 10) || 30000,
+    connectionTimeoutMillis: parseInt(process.env.ODOO_POOL_CONNECTION_TIMEOUT, 10) || 10000
+  },
+
+  // Retry settings for failed connections
+  retry: {
+    maxAttempts: parseInt(process.env.ODOO_RETRY_MAX_ATTEMPTS, 10) || 3,
+    delayMs: parseInt(process.env.ODOO_RETRY_DELAY_MS, 10) || 1000,
+    backoffMultiplier: parseFloat(process.env.ODOO_RETRY_BACKOFF_MULTIPLIER) || 2
+  },
+
+  // Timeout settings
+  timeout: {
+    connect: parseInt(process.env.ODOO_TIMEOUT_CONNECT, 10) || 10000,
+    request: parseInt(process.env.ODOO_TIMEOUT_REQUEST, 10) || 30000
+  },
+
+  // Model names - can be customized if using custom Odoo modules
+  models: {
+    employee: process.env.ODOO_MODEL_EMPLOYEE || 'hr.employee',
+    attendance: process.env.ODOO_MODEL_ATTENDANCE || 'hr.attendance',
+    leave: process.env.ODOO_MODEL_LEAVE || 'hr.leave',
+    department: process.env.ODOO_MODEL_DEPARTMENT || 'hr.department',
+    job: process.env.ODOO_MODEL_JOB || 'hr.job',
+    contract: process.env.ODOO_MODEL_CONTRACT || 'hr.contract',
+    payslip: process.env.ODOO_MODEL_PAYSLIP || 'hr.payslip'
+  },
+
+  // Common fields for different models
+  defaultFields: {
+    employee: [
+      'id',
+      'name',
+      'work_email',
+      'work_phone',
+      'mobile_phone',
+      'job_id',
+      'department_id',
+      'parent_id',
+      'work_location',
+      'active',
+      'create_date',
+      'write_date'
+    ],
+    attendance: [
+      'id',
+      'employee_id',
+      'check_in',
+      'check_out',
+      'worked_hours',
+      'create_date'
+    ],
+    leave: [
+      'id',
+      'employee_id',
+      'holiday_status_id',
+      'date_from',
+      'date_to',
+      'number_of_days',
+      'state',
+      'create_date'
+    ]
+  }
+};
+
+/**
+ * Get full Odoo URL
+ */
+odooConfig.getUrl = function() {
+  return `${this.protocol}://${this.host}:${this.port}`;
+};
+
+/**
+ * Get connection string (for logging, without password)
+ */
+odooConfig.getConnectionString = function() {
+  return `${this.protocol}://${this.username}@${this.host}:${this.port}/${this.database}`;
+};
+
+module.exports = odooConfig;

@@ -2,7 +2,7 @@
 
 > HRMS connector for Odoo following SOLID principles and best practices
 
-  REST API connector for Odoo HRMS built with Node.js and Express with Swagger documentation.
+REST API connector for Odoo HRMS built with Node.js and Express with Swagger documentation.
 
 ## 📦 Prerequisites
 
@@ -13,6 +13,12 @@
 - **Docker** & **Docker Compose** (optional)
 
 ## 🚀 Quick Start
+
+### Odoo Apps
+
+<p align="center">
+  <img src="docs/images/odoo-web.png">
+</p>
 
 ### Using Docker (Recommended)
 
@@ -29,6 +35,7 @@ make docker-up
 ```
 
 The API will be available at:
+
 - **API**: http://localhost:3000
 - **Swagger Docs**: http://localhost:3000/api-docs
 - **Odoo**: http://localhost:8069
@@ -135,81 +142,81 @@ Interactive API documentation: **http://localhost:3000/api-docs**
   <img src="docs/images/odoo-active-employees.png">
 </p>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/employees` | List all employees (paginated) |
-| GET | `/api/v1/employees/:id` | Get employee by ID |
-| GET | `/api/v1/employees/active` | Get active employees |
-| GET | `/api/v1/employees/department/:id` | Get by department |
-| GET | `/api/v1/employees/manager/:id` | Get by manager |
-| GET | `/api/v1/employees/job/:id` | Get by job title |
-| GET | `/api/v1/employees/search?name=xxx` | Search by name |
-| POST | `/api/v1/employees` | Create new employee |
-| PUT | `/api/v1/employees/:id` | Update employee |
-| PATCH | `/api/v1/employees/:id` | Partial update |
-| DELETE | `/api/v1/employees/:id` | Delete employee |
-| POST | `/api/v1/employees/:id/deactivate` | Deactivate employee |
-| POST | `/api/v1/employees/:id/reactivate` | Reactivate employee |
+| Method | Endpoint                            | Description                    |
+| ------ | ----------------------------------- | ------------------------------ |
+| GET    | `/api/v1/employees`                 | List all employees (paginated) |
+| GET    | `/api/v1/employees/:id`             | Get employee by ID             |
+| GET    | `/api/v1/employees/active`          | Get active employees           |
+| GET    | `/api/v1/employees/department/:id`  | Get by department              |
+| GET    | `/api/v1/employees/manager/:id`     | Get by manager                 |
+| GET    | `/api/v1/employees/job/:id`         | Get by job title               |
+| GET    | `/api/v1/employees/search?name=xxx` | Search by name                 |
+| POST   | `/api/v1/employees`                 | Create new employee            |
+| PUT    | `/api/v1/employees/:id`             | Update employee                |
+| PATCH  | `/api/v1/employees/:id`             | Partial update                 |
+| DELETE | `/api/v1/employees/:id`             | Delete employee                |
+| POST   | `/api/v1/employees/:id/deactivate`  | Deactivate employee            |
+| POST   | `/api/v1/employees/:id/reactivate`  | Reactivate employee            |
 
 #### Attendance Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/attendance` | List attendance entries |
-| GET | `/api/v1/attendance/:id` | Get attendance entry |
-| POST | `/api/v1/attendance` | Create attendance entry |
+| Method    | Endpoint                 | Description             |
+| --------- | ------------------------ | ----------------------- |
+| GET       | `/api/v1/attendance`     | List attendance entries |
+| GET       | `/api/v1/attendance/:id` | Get attendance entry    |
+| POST      | `/api/v1/attendance`     | Create attendance entry |
 | PUT/PATCH | `/api/v1/attendance/:id` | Update attendance entry |
-| DELETE | `/api/v1/attendance/:id` | Delete attendance entry |
+| DELETE    | `/api/v1/attendance/:id` | Delete attendance entry |
 
 #### Time Off Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/timeoff` | List leave requests |
-| GET | `/api/v1/timeoff/:id` | Get leave request |
-| POST | `/api/v1/timeoff` | Create leave request |
+| Method    | Endpoint              | Description          |
+| --------- | --------------------- | -------------------- |
+| GET       | `/api/v1/timeoff`     | List leave requests  |
+| GET       | `/api/v1/timeoff/:id` | Get leave request    |
+| POST      | `/api/v1/timeoff`     | Create leave request |
 | PUT/PATCH | `/api/v1/timeoff/:id` | Update leave request |
-| DELETE | `/api/v1/timeoff/:id` | Delete leave request |
+| DELETE    | `/api/v1/timeoff/:id` | Delete leave request |
 
 #### Payroll Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/payroll` | List payslips |
-| GET | `/api/v1/payroll/:id` | Get payslip |
-| POST | `/api/v1/payroll` | Create payslip shell |
-| PUT/PATCH | `/api/v1/payroll/:id` | Update payslip |
-| DELETE | `/api/v1/payroll/:id` | Delete payslip |
+| Method    | Endpoint              | Description          |
+| --------- | --------------------- | -------------------- |
+| GET       | `/api/v1/payroll`     | List payslips        |
+| GET       | `/api/v1/payroll/:id` | Get payslip          |
+| POST      | `/api/v1/payroll`     | Create payslip shell |
+| PUT/PATCH | `/api/v1/payroll/:id` | Update payslip       |
+| DELETE    | `/api/v1/payroll/:id` | Delete payslip       |
 
 #### Expenses Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/expenses` | List expenses |
-| GET | `/api/v1/expenses/:id` | Get expense |
-| POST | `/api/v1/expenses` | Create expense |
+| Method    | Endpoint               | Description    |
+| --------- | ---------------------- | -------------- |
+| GET       | `/api/v1/expenses`     | List expenses  |
+| GET       | `/api/v1/expenses/:id` | Get expense    |
+| POST      | `/api/v1/expenses`     | Create expense |
 | PUT/PATCH | `/api/v1/expenses/:id` | Update expense |
-| DELETE | `/api/v1/expenses/:id` | Delete expense |
+| DELETE    | `/api/v1/expenses/:id` | Delete expense |
 
 #### Invoices Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/invoices` | List invoices |
-| GET | `/api/v1/invoices/:id` | Get invoice |
-| POST | `/api/v1/invoices` | Create invoice |
+| Method    | Endpoint               | Description    |
+| --------- | ---------------------- | -------------- |
+| GET       | `/api/v1/invoices`     | List invoices  |
+| GET       | `/api/v1/invoices/:id` | Get invoice    |
+| POST      | `/api/v1/invoices`     | Create invoice |
 | PUT/PATCH | `/api/v1/invoices/:id` | Update invoice |
-| DELETE | `/api/v1/invoices/:id` | Delete invoice |
+| DELETE    | `/api/v1/invoices/:id` | Delete invoice |
 
 #### Recruitment Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/recruitment` | List applicants |
-| GET | `/api/v1/recruitment/:id` | Get applicant |
-| POST | `/api/v1/recruitment` | Create applicant |
+| Method    | Endpoint                  | Description      |
+| --------- | ------------------------- | ---------------- |
+| GET       | `/api/v1/recruitment`     | List applicants  |
+| GET       | `/api/v1/recruitment/:id` | Get applicant    |
+| POST      | `/api/v1/recruitment`     | Create applicant |
 | PUT/PATCH | `/api/v1/recruitment/:id` | Update applicant |
-| DELETE | `/api/v1/recruitment/:id` | Delete applicant |
+| DELETE    | `/api/v1/recruitment/:id` | Delete applicant |
 
 ## 🧪 Testing
 
@@ -244,6 +251,7 @@ make docker-ps          # Show running containers
 ### Services
 
 The Docker Compose setup includes:
+
 - **API**: HRMS Connector (port 3000)
 - **Odoo**: Odoo 16.0 (port 8069)
 - **PostgreSQL**: Database for Odoo (port 5432)
@@ -291,5 +299,3 @@ make format-check      # Check formatting
 ### Available Make Commands
 
 Run `make help` to see all available commands.
-
-
